@@ -1,0 +1,9 @@
+opencv-python
+numpy
+insightface
+onnxruntime
+faiss-cpu
+fastapi
+uvicorn
+streamlit
+pillow
