@@ -2,24 +2,15 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 
 # Virtual Environment
-.venv/
 venv/
 
-# VS Code
-.vscode/
-
-# Dataset
-dataset/
-
-# Generated embeddings
+# Generated Files
+output/
 embeddings/
 
-# Temporary files
-temp/
-output/
-
-# OS files
+# OS Files
 .DS_Store
 Thumbs.db
