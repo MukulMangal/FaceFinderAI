@@ -226,4 +226,19 @@ if data is not None:
 
             image_path = result["output_image"]
 
-            image_bytes = requests.get(image_path).content
+            st.write(image_path)
+
+            response = requests.get(image_path)
+
+            st.write("Status Code:", response.status_code)
+
+            image_bytes = response.content
+
+            st.download_button(
+                label="⬇ Download Image",
+                data=image_bytes,
+                file_name=result["image_name"],
+                mime="image/jpeg",
+                use_container_width=True,
+                key=result["image_name"]
+            )

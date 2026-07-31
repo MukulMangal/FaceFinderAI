@@ -4,6 +4,11 @@ indexer.py
 Indexes all faces in a dataset and builds the FAISS index.
 """
 
+from src.utils import load_image, resize_image
+
+import time
+
+
 import json
 import os
 from typing import List
@@ -90,6 +95,10 @@ def index_dataset(image_dir: str) -> None:
         ]
     )
 
+    print(f"Processing {len(image_files)} images...")
+    start_time = time.perf_counter()
+
+
     all_embeddings: List[np.ndarray] = []
     metadata = []
 
@@ -99,7 +108,8 @@ def index_dataset(image_dir: str) -> None:
 
     print("\n========== INDEXING DATASET ==========\n")
 
-    for index, filename in enumerate(image_files, start=1):
+
+    for index, filename in enumerate(image_files[:145], start=1):
 
         image_path = os.path.join(image_dir, filename)
 
@@ -109,9 +119,12 @@ def index_dataset(image_dir: str) -> None:
 
             image = load_image(image_path)
 
+
             if image is None:
                 print("   Could not load image.\n")
                 continue
+
+            image = resize_image(image, 1200)
 
             images_processed += 1
 
@@ -179,11 +192,16 @@ def index_dataset(image_dir: str) -> None:
     print("Saved            : embeddings/embeddings.npy")
     print("Saved            : embeddings/metadata.json")
 
+    end_time = time.perf_counter()
+
+    print(f"\nTotal Time : {end_time - start_time:.2f} seconds")
+    print(f"Images/sec : {images_processed/(end_time-start_time):.2f}")
+    print(f"Faces/sec  : {faces_found/(end_time-start_time):.2f}")
+
 
 # ==========================================================
 # Demo
 # ==========================================================
 
 if __name__ == "__main__":
-
-    index_dataset("dataset/wedding_images")
+    index_dataset(r"C:\Users\manga\OneDrive\Desktop\d1")

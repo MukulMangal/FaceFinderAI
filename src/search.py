@@ -39,7 +39,7 @@ def load_metadata() -> List[dict]:
 
 def search_faces(
     query_image_path: str,
-    top_k: int = 10,
+    top_k: int = 50,
     threshold: float = 0.50,
 ) -> List[Dict]:
     """

@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+.venv/
+venv/
+
+# VS Code
+.vscode/
+
+# Dataset
+dataset/
+
+# Generated embeddings
+embeddings/
+
+# Temporary files
+temp/
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
